@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2022",                          /* Modern JavaScript features */
+    "module": "ESNext",                          /* Use ES modules (import/export) */
+    "moduleResolution": "node",                  /* How to resolve modules */
+    
+    /* Strict Type Checking */
+    "strict": true,                              /* Enable all strict type checks */
+    "noImplicitAny": true,                       /* Error on expressions with 'any' type */
+    "strictNullChecks": true,                    /* Strict null checks */
+    
+    /* Module Resolution */
+    "esModuleInterop": true,                     /* Enables import compatibility */
+    "allowSyntheticDefaultImports": true,        /* Allow default imports */
+    "resolveJsonModule": true,                   /* Allow importing JSON files */
+    
+    /* Output */
+    "outDir": "./dist",                          /* Output directory for compiled JS */
+    "rootDir": "./src",                          /* Root directory for source files */
+    "declaration": true,                         /* Generate .d.ts files */
+    "removeComments": true,                      /* Remove comments in output */
+    
+    /* Advanced */
+    "skipLibCheck": true,                        /* Skip type checking of declaration files */
+    "forceConsistentCasingInFileNames": true     /* Ensure consistent casing */
+  },
+  "include": [
+    "src/**/*"                                   /* Include all files in src/ */
+  ],
+  "exclude": [
+    "node_modules",                              /* Exclude dependencies */
+    "dist"                                       /* Exclude compiled output */
+  ]
+}

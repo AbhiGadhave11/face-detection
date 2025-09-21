@@ -1,0 +1,4 @@
+face-detection-backend/node_modules/
+face-detection-backend/dist/
+face-detection-backend/.env
+face-detection-backend/.env.*

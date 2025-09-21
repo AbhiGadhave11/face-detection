@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model - represents admin/users table
+model User {
+  id        String   @id @default(cuid())  // Primary key, auto-generated
+  username  String   @unique               // Unique username
+  password  String                         // Hashed password (never store plain text!)
+  createdAt DateTime @default(now())       // Timestamp when created
+  updatedAt DateTime @updatedAt            // Timestamp when last updated
+  
+  // Relationships - one user can have many cameras
+  cameras   Camera[]                       // Array of cameras owned by this user
+}
+
+// Camera model - represents individual cameras
+model Camera {
+  id          String   @id @default(cuid())
+  name        String                       // Display name like "Front Door"
+  rtspUrl     String                       // RTSP stream URL
+  location    String?                      // Optional location description
+  enabled     Boolean  @default(true)      // Can be disabled without deletion
+  isStreaming Boolean  @default(false)     // Current streaming status
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Foreign key relationship to User
+  userId      String                       // References User.id
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // One camera can have many alerts
+  alerts      Alert[]
+  
+  // Database indexes for performance
+  @@index([userId])                        // Fast lookups by user
+  @@index([enabled])                       // Fast filtering by enabled status
+}
+
+// Alert model - face detection events
+model Alert {
+  id          String   @id @default(cuid())
+  cameraId    String                       // Which camera detected faces
+  timestamp   DateTime @default(now())     // When detection happened
+  faceCount   Int      @default(1)         // Number of faces detected
+  confidence  Float?                       // Detection confidence (0-1)
+  snapshotUrl String?                      // URL to snapshot image
+  metadata    Json?                        // Additional data (bounding boxes, etc.)
+  
+  // Relationship to Camera
+  camera      Camera   @relation(fields: [cameraId], references: [id], onDelete: Cascade)
+  
+  // Indexes for efficient queries
+  @@index([cameraId])                      // Fast lookups by camera
+  @@index([timestamp])                     // Fast sorting by time
+}

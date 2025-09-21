@@ -1,0 +1,33 @@
+{
+  "name": "face-detection-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:seed": "tsx src/scripts/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/node": "^24.5.2",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.3",
+    "@prisma/client": "^6.16.2",
+    "bcrypt": "^6.0.0",
+    "hono": "^4.9.8",
+    "prisma": "^6.16.2",
+    "ws": "^8.18.3",
+    "zod": "^4.1.9"
+  }
+}
