@@ -64,7 +64,7 @@ export function DashboardLayout() {
     onNewAlert: handleNewAlert,
   });
 
-  // Navigation items
+  // Navigation things
   const navigationItems: NavigationItem[] = [
     {
       text: 'Dashboard',
@@ -164,7 +164,6 @@ export function DashboardLayout() {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       
-      {/* App Bar */}
       <AppBar
         position="fixed"
         sx={{
@@ -187,7 +186,6 @@ export function DashboardLayout() {
             {navigationItems.find(item => item.path === location.pathname)?.text || 'Dashboard'}
           </Typography>
 
-          {/* Connection Status Indicator */}
           <Chip
             icon={<Circle sx={{ fontSize: 12 }} />}
             label={isConnected ? 'Live' : 'Offline'}
@@ -196,7 +194,6 @@ export function DashboardLayout() {
             sx={{ mr: 2, display: { xs: 'none', sm: 'flex' } }}
           />
 
-          {/* User Menu */}
           <IconButton
             size="large"
             aria-label="account of current user"
@@ -250,7 +247,6 @@ export function DashboardLayout() {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="navigation"
       >
-        {/* Mobile drawer */}
         <Drawer
           variant="temporary"
           open={mobileOpen}

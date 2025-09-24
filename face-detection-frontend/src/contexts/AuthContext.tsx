@@ -118,7 +118,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         } catch (error) {
             console.error('Login failed:', error);
             dispatch({ type: 'LOGIN_FAILURE' });
-            throw error; // Re-throw to handle in component
+            throw error;
         }
     };
 
@@ -146,7 +146,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
                 return;
             }
 
-            // Decode JWT to check expiration
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const decoded: any = jwtDecode(token);
             const currentTime = Date.now() / 1000;
@@ -187,5 +186,3 @@ export function AuthProvider({ children }: AuthProviderProps) {
         </AuthContext.Provider>
     );
 }
-
-// Remove useAuth from this file. It is now in useAuth.ts.

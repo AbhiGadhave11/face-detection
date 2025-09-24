@@ -7,7 +7,7 @@ import { useAuth } from './contexts/useAuth';
 import { LoginPage } from './components/auth/LoginPage';
 import { DashboardLayout } from './components/dashboard/DashboardLayout';
 import { CameraList } from './components/cameras/CameraList';
-import { CameraForm } from './components/cameras/CameraForm';
+// import { CameraForm } from './components/cameras/CameraForm';
 
 // Create Material-UI theme
 const theme = createTheme({
@@ -44,10 +44,9 @@ function App() {
       <AuthProvider>
         <Router>
           <Routes>
-            {/* Public routes */}
+            
             <Route path="/login" element={<LoginPage />} />
             
-            {/* Protected routes */}
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <DashboardLayout />
@@ -62,7 +61,7 @@ function App() {
             {/* Redirect root to dashboard */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             
-            {/* Catch all - redirect to dashboard */}
+            {/* - redirect to dashboard */}
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </Router>

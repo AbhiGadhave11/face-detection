@@ -1,6 +1,3 @@
-// src/components/auth/LoginPage.tsx
-// Login page component with form validation
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -24,7 +21,7 @@ import {
   Security as SecurityIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../../contexts/useAuth';
-import { apiService } from '../../services/api';
+// import { apiService } from '../../services/api';
 // import { useAuth } from '../../contexts/AuthContext';
 
 interface LoginFormData {
