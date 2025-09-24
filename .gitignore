@@ -1,4 +1,15 @@
+# backend ignores
 face-detection-backend/node_modules/
 face-detection-backend/dist/
 face-detection-backend/.env
 face-detection-backend/.env.*
+
+# frontend ignores
+face-detection-frontend/node_modules/
+face-detection-frontend/dist/
+face-detection-frontend/.env
+face-detection-frontend/.env.*
+.DS_Store
+.vscode/
+npm-debug.log
+yarn-error.log    

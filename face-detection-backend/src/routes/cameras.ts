@@ -14,6 +14,7 @@ cameras.use('/*', jwt({ secret: JWT_SECRET }));
 
 cameras.get('/', async (c) => {
     try {
+        console.log(c);
         const payload = c.get('jwtPayload') as JWTPayload;
     
         console.log(`Fetching cameras for user: ${payload.username}`);

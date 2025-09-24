@@ -13,6 +13,8 @@ auth.post('/login', async (c) => {
         const validatedData = LoginSchema.parse(body);
         const { username, password } = validatedData;
 
+        console.log(username, password);
+
         // find user in database
         const user = await prisma.user.findUnique({
             where: { username },
