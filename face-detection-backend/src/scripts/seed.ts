@@ -38,7 +38,7 @@ async function main(): Promise<void> {
         console.log(`User ID: ${admin.id}`);
 
         // Create some sample cameras for testing
-        console.log('📷 Creating sample cameras...');
+        console.log('Creating sample cameras...');
 
         for (const cameraData of getSampleCameras(admin.id)) {
             const camera = await prisma.camera.create({
@@ -63,5 +63,5 @@ main().catch((e) => {
     process.exit(1);
 }).finally(async () => {
     await prisma.$disconnect();
-    console.log('📦 Database connection closed');
+    console.log('Database connection closed');
 });

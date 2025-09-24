@@ -44,7 +44,7 @@ cameras.get('/', async (c) => {
             }))
         });
     } catch (error) {
-        console.error('❌ Get cameras error:', error);
+        console.error('Get cameras error:', error);
         return c.json({ error: 'Failed to fetch cameras' }, 500);
 
     }

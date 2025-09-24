@@ -30,7 +30,6 @@ auth.post('/login', async (c) => {
             return c.json({ error: 'Invalid username or password' }, 401);
         }
 
-        // Verify password
         const isValidPassword = await verifyPassword(password, user.password);
         if (!isValidPassword) {
             console.log(`Login failed: Invalid password for '${username}'`);
@@ -82,9 +81,6 @@ auth.get('/verify', async (c) => {
     }
 
     const token = extractTokenFromHeader(authHeader);
-    
-    // Here you could use your verifyToken utility, but since we'll use
-    // JWT middleware in protected routes, this is just a simple check
     
     return c.json({ 
       valid: true,
