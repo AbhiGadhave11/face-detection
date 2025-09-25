@@ -7,6 +7,14 @@ import { testDatabaseConnection } from './utils/database';
 import { wsManager } from './utils/websocket';
 import auth from './routes/auth';
 import cameras from './routes/cameras';
+import { serveStatic } from '@hono/node-server/serve-static'
+import { serve } from '@hono/node-server'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+// Recreate __dirname in ESM
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const app = new Hono();
 
@@ -19,6 +27,18 @@ app.use('*', cors({
   credentials: true,
 }));
 
+app.route('/api/auth', auth);
+
+app.route('/api/cameras', cameras);
+
+
+app.use(
+  '/assets/*',
+  serveStatic({ root: path.join(__dirname, '../dist') })
+);
+
+app.get('*', serveStatic({ root: path.join(__dirname, '../dist'), path: 'index.html' }))
+
 
 app.get('/', (c) => {
   return c.json({ 
@@ -28,12 +48,6 @@ app.get('/', (c) => {
     websocket: 'ws://localhost:8000'
   });
 });
-
-
-app.route('/api/auth', auth);
-
-
-app.route('/api/cameras', cameras);
 
 // WebSocket-specific health check
 app.get('/health/websocket', async (c) => {
@@ -120,13 +134,14 @@ async function startServer() {
 
   server.on('request', async (req, res) => {
     try {
+      const stream = req.method !== 'GET' && req.method !== 'HEAD' ? req : undefined;
       const response = await app.fetch(
         new Request(`http://${req.headers.host}${req.url}`, {
           method: req.method,
           headers: req.headers as any,
-          body: req.method !== 'GET' && req.method !== 'HEAD' ? req : undefined,
-          duplex: 'half',
-        })
+          body: stream as unknown as BodyInit, // temporary cast
+          duplex: 'half' as 'half',
+        }as unknown as RequestInit)
       );
 
       res.statusCode = response.status;

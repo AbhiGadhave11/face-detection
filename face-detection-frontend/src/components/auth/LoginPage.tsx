@@ -21,8 +21,6 @@ import {
   Security as SecurityIcon,
 } from '@mui/icons-material';
 import { useAuth } from '../../contexts/useAuth';
-// import { apiService } from '../../services/api';
-// import { useAuth } from '../../contexts/AuthContext';
 
 interface LoginFormData {
   username: string;
@@ -240,3 +238,4 @@ export function LoginPage() {
     </Container>
   );
 }
+
