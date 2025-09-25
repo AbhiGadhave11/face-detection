@@ -5,8 +5,8 @@ A modern, full-stack web application for real-time face detection across multipl
 ## 📸 Demo
 
 ### Live Demo
-- **Video Demonstration**: [[Link to your demo video]](https://drive.google.com/file/d/1EhOqUfwlsOiTVsOh8BVxPw-HsjkxE7BW/view?usp=sharing)
-- **GitHub Repository**: [[Your GitHub repo link]](https://github.com/AbhiGadhave11/face-detection)
+- **Video Demonstration**: [[demo video Link]](https://drive.google.com/file/d/1EhOqUfwlsOiTVsOh8BVxPw-HsjkxE7BW/view?usp=sharing)
+- **GitHub Repository**: [[GitHub repo link]](https://github.com/AbhiGadhave11/face-detection)
 
 ### Test Credentials
 ```
